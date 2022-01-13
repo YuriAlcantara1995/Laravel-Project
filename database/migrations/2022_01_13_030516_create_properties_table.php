@@ -16,7 +16,8 @@ class CreatePropertiesTable extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->string('description');
-            $table->unsignedBigInteger('realtor_id')->nullable();
+            $table->float('price');
+            $table->unsignedBigInteger('realtor_id');
             $table->foreign('realtor_id')
             ->references('id')
             ->on('realtors')

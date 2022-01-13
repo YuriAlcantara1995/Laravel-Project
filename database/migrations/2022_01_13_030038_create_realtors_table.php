@@ -15,9 +15,8 @@ class CreateRealtorsTable extends Migration
     {
         Schema::create('realtors', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('phone');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
             ->references('id')
             ->on('users')
