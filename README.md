@@ -16,6 +16,7 @@ A simple website that helps to manage small to medium scale real estate business
 * Laravel (https://laravel.com/docs/8.x)
 * Docker Composer
 * Php 8.0
+* mysql
 
 ### Installing
 * Install docker if not already installed (https://docs.docker.com/get-docker/) 
