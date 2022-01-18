@@ -22,6 +22,7 @@ A simple website that helps to manage small to medium scale real estate business
 * Clone the project
 * composer require laravel/sail --dev
 * php artisan sail:install
+* Generate key: ./vendor/bin/sail artisan key:generate
 * Start app: ./vendor/bin/sail up
 * Seed data: ./vendor/bin/sail artisan migrate:fresh --seed
 
