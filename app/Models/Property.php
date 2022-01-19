@@ -12,7 +12,8 @@ class Property extends Model
 
     protected $fillable = [
         'description',
-        'realtor_id',
+        'price',
+        'realtor_id'
     ];
 
     public function realtor() {

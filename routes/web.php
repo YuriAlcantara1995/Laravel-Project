@@ -21,6 +21,9 @@ Route::get('/welcome', function () {
 
 Route::resource('properties', App\Http\Controllers\PropertyController::class);
 
+Route::resource('realtors', App\Http\Controllers\RealtorController::class);
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

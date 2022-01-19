@@ -1,10 +1,10 @@
-@extends('properties.layout')
+@extends('realtors.layout')
    
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Edit Property</h2>
+                <h2>Edit Realtor</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ url()->previous() }}"> Back</a>
@@ -23,21 +23,15 @@
         </div>
     @endif
   
-    <form action="{{ route('properties.update',$property->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('realtors.update',$realtor->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
    
          <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Description:</strong>
-                    <input type="text" name="description" value="{{ $property->description }}" class="form-control" placeholder="Description">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Price:</strong>
-                    <input type="number" name="price" value="{{ $property->price }}" class="form-control" placeholder="Price">
+                    <strong>Phone:</strong>
+                    <input type="text" name="phone" value="{{ $realtor->phone }}" class="form-control" placeholder="Phone">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

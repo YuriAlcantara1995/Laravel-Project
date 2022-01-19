@@ -17,7 +17,7 @@ class CreatePropertiesTable extends Migration
             $table->id();
             $table->string('description');
             $table->float('price');
-            $table->unsignedBigInteger('realtor_id');
+            $table->unsignedBigInteger('realtor_id')->nullable();
             $table->foreign('realtor_id')
             ->references('id')
             ->on('realtors')

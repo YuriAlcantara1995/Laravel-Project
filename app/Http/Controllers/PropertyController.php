@@ -57,12 +57,23 @@ class PropertyController extends Controller
             'description' => 'required',
             'price' => 'required',
         ]);
-
         
+        $user_id = Auth::id();
+        
+        $realtor = Realtor::where('user_id',$user_id)->get();
+        if ($realtor->isEmpty())
+        {
+            $messages = ['You should create a Realtor profile to create a Property'];
+            
+            return redirect()->route('properties.create')
+            ->withErrors($messages);
+        }
+
         $property = Property::create($request->all());
-        $property->realtor_id = Auth::id();
+        $property->realtor_id = $user_id;
         $property->save();
 
+      
         return redirect()->route('properties.index')
                         ->with('success','Property created successfully.');
     }

@@ -8,6 +8,9 @@
   				<form action="{{ route('properties.index') }}">
     				<input class="bg-transparent hover:bg-gray-900 text-gray-900 hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border border-gray-900 hover:border-transparent" type="submit" value="Properties" />
 				</form>
+				<form action="{{ route('realtors.index') }}">
+    				<input class="bg-transparent hover:bg-gray-900 text-gray-900 hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border border-gray-900 hover:border-transparent" type="submit" value="Realtors" />
+				</form>
 			</div>
 		</div>
 		<!--Right Col-->

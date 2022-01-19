@@ -10,8 +10,7 @@ class Realtor extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'email'
+        'phone',
     ];
     
     public function properties()
