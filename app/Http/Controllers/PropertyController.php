@@ -23,7 +23,9 @@ class PropertyController extends Controller
         $order = $request->query('order','asc');    
 
         $properties = Property::join('realtors','realtors.id','=','properties.realtor_id')
-        ->select('properties.id','description', 'price','realtor_id','realtors.phone as realtor_contact')
+        ->join('users','users.id','=','realtors.user_id')
+        ->leftjoin('categories','categories.id','=','properties.category_id')
+        ->select('properties.id','properties.name','properties.description', 'price','realtor_id','realtors.phone as realtor_contact', 'users.name as realtor_name', 'users.email as realtor_email','categories.name as category')
         ->orderBy($sortBy,$order)->paginate(5);
     
         return view('properties.index',compact('properties','sortBy','order'))

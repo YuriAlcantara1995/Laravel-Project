@@ -15,20 +15,14 @@ class CreatePropertiesTable extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('description');
             $table->float('price');
-            
+
             $table->unsignedBigInteger('realtor_id')->nullable();
             $table->foreign('realtor_id')
             ->references('id')
             ->on('realtors')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
-
-            $table->unsignedBigInteger('category_id')->nullable();
-            $table->foreign('category_id')
-            ->references('id')
-            ->on('categories')
             ->onDelete('cascade')
             ->onUpdate('cascade');
 

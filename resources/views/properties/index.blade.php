@@ -21,41 +21,45 @@
     <table class="table table-bordered">
         <tr>
             <th>No</th>
-            @if($sortBy == "properties.description" || $sortBy == null)
-                @if($order == "desc")
-                    <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'properties.description', 'order' => 'asc']) }}">Description &darr;</a></th>
-                @else
-                    <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'properties.description', 'order' => 'desc']) }}">Description &uarr;</a></th>
-                @endif
-            @else
-                <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'properties.description', 'order' => 'asc']) }}">Description</a></th>
-            @endif
-            @if($sortBy == "realtors.phone")
-                @if($order == "desc")
-                    <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'realtors.phone', 'order' => 'asc']) }}">Realtor Contact &darr;</a></th>
-                @else
-                    <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'realtors.phone', 'order' => 'desc']) }}">Realtor Contact &uarr;</a></th>
-                @endif
-            @else
-                <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'realtors.phone', 'order' => 'asc']) }}">Realtor Contact</a></th>
-            @endif            
-            @if($sortBy == "price")
-                @if($order == "desc")
-                    <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'price', 'order' => 'asc']) }}">Price &darr;</a></th>
-                @else
-                    <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'price', 'order' => 'desc']) }}">Price &uarr;</a></th>
-                @endif
-            @else
-                <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'price', 'order' => 'asc']) }}">Price</a></th>
-            @endif
+            <th>Properties</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($properties as $property)
         <tr>
             <td>{{ ++$i }}</td>
-            <td><a class="" href="{{ route('properties.show',$property->id) }}">{{ $property->description}}</a></td>
-            <td><a class="" href="#">{{ $property->realtor_contact }}</a></td>
-            <td>{{ $property->price }}</td>
+            <td>
+                <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <a class="" href="{{ route('properties.show',$property->id) }}">{{ $property->name }}</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Category:</strong>
+                            {{ $property->category }}
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Description:</strong>
+                            {{ $property->description }}
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Price:</strong>
+                            {{ $property->price }}
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Realtor:</strong>
+                            <a class="" href="{{ route('realtors.show',$property->realtor_id) }}">{{ $property->realtor_name}}</a>    
+                        </div>
+                    </div>
+                </div>
+            </td>
             <td>
                 <form action="{{ route('properties.destroy',$property->id) }}" method="POST">
    
