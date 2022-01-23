@@ -19,6 +19,17 @@ class CreateCategoriesTable extends Migration
             $table->string('description');
             $table->timestamps();
         });
+
+        Schema::table('properties', function (Blueprint $table) {
+
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->foreign('category_id')
+            ->references('id')
+            ->on('categories')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+    
+            });
     }
 
     /**
