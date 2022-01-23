@@ -52,7 +52,7 @@ class RealtorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'phone' => 'required',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
         ]);
         
         $user_id = Auth::id();
@@ -99,7 +99,7 @@ class RealtorController extends Controller
     public function update(Request $request, Realtor $realtor)
     {
         $request->validate([
-            'phone' => 'required',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
         ]);
 
         $realtor->update($request->all());
