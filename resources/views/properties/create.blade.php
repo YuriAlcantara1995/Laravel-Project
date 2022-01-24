@@ -29,14 +29,30 @@
     <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Description:</strong>
-                    <input type="text" name="description" class="form-control" placeholder="Description">
+                    <strong>Name:</strong>
+                    <input type="text" name="name" class="form-control" placeholder="Name">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Category:</strong>
+                    <select name="category_id" class="form-control">
+                        @foreach ($categories as $category)
+                          <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Price:</strong>
                     <input type="number" name="price" class="form-control" placeholder="Price">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Description:</strong>
+                    <input type="text" name="description" class="form-control" placeholder="Description">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

@@ -17,4 +17,9 @@ class Realtor extends Model
     {
         return $this->hasMany('App\Models\Property');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

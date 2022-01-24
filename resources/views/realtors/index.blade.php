@@ -6,9 +6,11 @@
             <div class="pull-left">
                 <h2>Real Estate Selling System</h2>
             </div>
-            <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('realtors.create') }}"> Create Realtor Profile</a>
-            </div>
+            @if (!$existRealtorProfile)
+               <div class="pull-right">
+                    <a class="btn btn-success" href="{{ route('realtors.create') }}"> Create Realtor Profile</a>
+                </div>
+            @endif
         </div>
     </div>
    
@@ -21,21 +23,17 @@
     <table class="table table-bordered">
         <tr>
             <th>No</th>
-            @if($sortBy == "realtors.phone")
-                @if($order == "desc")
-                    <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'realtors.phone', 'order' => 'asc']) }}">Realtor Contact &darr;</a></th>
-                @else
-                    <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'realtors.phone', 'order' => 'desc']) }}">Realtor Contact &uarr;</a></th>
-                @endif
-            @else
-                <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'realtors.phone', 'order' => 'asc']) }}">Realtor Contact</a></th>
-            @endif            
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($realtors as $realtor)
         <tr>
             <td>{{ ++$i }}</td>
-            <td><a class="" href="{{ route('realtors.show',$realtor->id) }}">{{ $realtor->phone}}</a></td>
+            <td><a class="" href="{{ route('realtors.show',$realtor->id) }}">{{ $realtor->user_name}}</a></td>
+            <td>{{ $realtor->user_email}}</td>
+            <td>{{ $realtor->phone}}</td>
             <td>
                 <form action="{{ route('realtors.destroy',$realtor->id) }}" method="POST">
    

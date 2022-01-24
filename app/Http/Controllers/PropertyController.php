@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
    
 use App\Models\Property;
 use App\Models\Realtor;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -44,7 +45,9 @@ class PropertyController extends Controller
             return redirect()->route('login');
         }
 
-        return view('properties.create');
+        $categories = Category::all();
+
+        return view('properties.create',compact('categories'));
     }
     
     /**
@@ -57,7 +60,8 @@ class PropertyController extends Controller
     {
         $request->validate([
             'description' => 'required',
-            'price' => 'required',
+            'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'name' => 'required'
         ]);
         
         $user_id = Auth::id();

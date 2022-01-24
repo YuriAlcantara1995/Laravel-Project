@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', App\Http\Controllers\WelcomeController::class);
 
-Route::get('/welcome', function () {
-    return view('welcome');
-})->middleware(['auth'])->name('welcome');
+Route::get('/welcome', App\Http\Controllers\WelcomeController::class);
 
 Route::resource('properties', App\Http\Controllers\PropertyController::class);
 

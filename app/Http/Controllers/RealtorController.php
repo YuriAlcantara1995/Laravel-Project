@@ -24,7 +24,9 @@ class RealtorController extends Controller
         $realtors = Realtor::join('users','users.id','=','realtors.user_id')
         ->select('realtors.id','phone','user_id','users.name as user_name','users.email as user_email')
         ->orderBy($sortBy,$order)->paginate(5);
-        return view('realtors.index',compact('realtors','sortBy','order'))
+
+        $existRealtorProfile = (Realtor::all()->where('user_id', Auth::user()->id)->count() != 0);
+        return view('realtors.index',compact('realtors','sortBy','order','existRealtorProfile'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
      
