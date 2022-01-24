@@ -75,6 +75,8 @@
         @endforeach
     </table>
   
-    {!! $properties->appends(Request::query())->links() !!}
+    <div class="d-flex justify-content-center">
+        {!! $properties->appends(Request::query())->links() !!}
+    </div>
       
 @endsection

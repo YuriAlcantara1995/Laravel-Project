@@ -6,7 +6,7 @@
             <div class="pull-left">
                 <h2>Real Estate Selling System</h2>
             </div>
-            @if (!$existRealtorProfile)
+            @if (!$existRealtorProfile && auth()->check())
                <div class="pull-right">
                     <a class="btn btn-success" href="{{ route('realtors.create') }}"> Create Realtor Profile</a>
                 </div>
@@ -48,7 +48,9 @@
         </tr>
         @endforeach
     </table>
-  
-    {!! $realtors->appends(Request::query())->links() !!}
+    
+    <div class="d-flex justify-content-center">
+        {!! $realtors->appends(Request::query())->links() !!}
+    </div>
       
 @endsection
