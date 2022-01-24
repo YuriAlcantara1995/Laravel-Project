@@ -1,5 +1,4 @@
 <x-site-layout title="Real Estate Selling System">
-		
         <div class="flex flex-col w-full lg:w-1/2 justify-center items-start pt-12 pb-24 px-6">
 			<p class="uppercase tracking-loose">Welcome</p>
 			<h1 class="font-bold text-3xl my-4">Find your home</h1>
@@ -15,6 +14,13 @@
     					<input class="bg-transparent hover:bg-gray-900 text-gray-900 hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border border-gray-900 hover:border-transparent" type="submit" value="Realtors" />
 					</form>
 				</div>
+				@if (Auth::check() && $realtors->where('user_id', Auth::user()->id)->count() == 0)
+				<div style="float:left; margin-left:10px">
+					<form action="{{ route('realtors.create') }}">
+    					<input class="bg-transparent hover:bg-gray-900 text-gray-900 hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border border-gray-900 hover:border-transparent" type="submit" value="Create Realtor Profile" />
+					</form>
+				</div>
+				@endif
 			</div>
 		</div>
 		<!--Right Col-->
