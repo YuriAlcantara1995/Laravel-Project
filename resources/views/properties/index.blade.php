@@ -34,6 +34,19 @@
             <td>{{ ++$i }}</td>
             <td>
                 <div class="row">
+                @forelse ($property->images as $image)
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                   <img src="/storage/images/{{$image->file_path}}" alt="" width="300px">
+                </div>
+                
+                @if ($loop->first)
+                   @break
+                @endif
+                @empty
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <p>No image</p>
+                </div>
+                @endforelse
                 <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <a class="" href="{{ route('properties.show',$property->id) }}">{{ $property->name }}</a>
@@ -42,7 +55,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Category:</strong>
-                            {{ $property->category }}
+                            {{ $property->category_name }}
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">

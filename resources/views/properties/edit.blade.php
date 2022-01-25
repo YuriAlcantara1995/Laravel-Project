@@ -1,6 +1,26 @@
 @extends('properties.layout')
    
 @section('content')
+
+<script type="text/javascript">
+    function add_image() {
+        let container = document.getElementById('image_container');
+        let counter = document.getElementById('image_count');
+        let count = parseInt(counter.getAttribute('value'));
+        
+        container.appendChild(document.createElement("BR"));
+        var inputfile = document.createElement("INPUT");
+        inputfile.type = "file";
+        inputfile.name = "images" + count.toString();
+        inputfile.class = "form-control";
+        inputfile.style = "margin-top:10px";
+        container.appendChild(inputfile);
+
+        count += 1;
+        counter.setAttribute('value',count.toString());
+    }
+</script>
+
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -39,8 +59,12 @@
                     <strong>Category:</strong>
                     <select name="category_id" class="form-control">
                         @foreach ($categories as $category)
-                          <option value="{{$category->id}}">{{$category->name}}</option>
-                        @endforeach
+                        @if($category->name == $property->category->name)
+                            <option selected="true" value="{{$category->id}}">{{$category->name}}</option>
+                        @else
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endif
+                          @endforeach
                     </select>
                 </div>
             </div>
@@ -54,6 +78,13 @@
                 <div class="form-group">
                     <strong>Description:</strong>
                     <input type="text" name="description" class="form-control" value="{{ $property->description }}">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div id="image_container" class="form-group">
+                    <strong>Images:</strong>
+                    <button type="button" onclick="add_image()" id="btn_add_image" class="btn btn-primary" style="margin-left:10px">Add new image</button>
+                    <input id="image_count" hidden type="number" name="count" class="form-control" value=0> 
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

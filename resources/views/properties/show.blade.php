@@ -21,7 +21,9 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Category:</strong>
-                            {{ $property->category->name }}
+                            @if(!is_null($property->category))
+                                {{ $property->category->name }}
+                            @endif
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -42,5 +44,17 @@
                             <a class="" href="{{ route('realtors.show',$property->realtor_id) }}">{{ $property->realtor->user->name}}</a>    
                         </div>
                     </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Images:</strong>
+                <br/>
+                @foreach ($images as $image)
+                    <img src="/storage/images/{{$image->file_path}}" alt="">
+                    <br/>
+                    <br/>
+                @endforeach
+            </div>
+        </div>
+
                 </div>
 @endsection
