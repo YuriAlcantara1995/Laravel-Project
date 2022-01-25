@@ -26,4 +26,9 @@ class Property extends Model
     {
         return $this->belongsTo('App\Models\Category');
     }
+
+    public function images()
+    {
+        return $this->hasMany('App\Models\Image');
+    }
 }
