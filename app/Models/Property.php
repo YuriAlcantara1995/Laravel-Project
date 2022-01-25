@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
 
 class Property extends Model
 {
@@ -14,15 +14,16 @@ class Property extends Model
         'description',
         'price',
         'realtor_id',
-        'name'
+        'name',
     ];
 
-    public function realtor() {
+    public function realtor()
+    {
         return $this->belongsTo('App\Models\Realtor');
     }
 
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo('App\Models\Category');
     }
-
 }
