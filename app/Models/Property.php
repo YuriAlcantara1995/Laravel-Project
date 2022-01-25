@@ -15,7 +15,7 @@ class Property extends Model
         'price',
         'realtor_id',
         'name',
-        'category_id'
+        'category_id',
     ];
 
     public function realtor()

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Property;
 use App\Models\Realtor;
-use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -85,18 +85,17 @@ class PropertyController extends Controller
 
         $count = $request->input('count');
 
-        for($i = 0; $i < $count; $i++){
-            $image = $request->file('images' . strval($i)); 
+        for ($i = 0; $i < $count; $i++) {
+            $image = $request->file('images'.strval($i));
             $image->store('images', 'public');
 
             $newImage = new Image([
-                "property_id" => $property->id,
-                "file_path" => $image->hashName()
+                'property_id' => $property->id,
+                'file_path' => $image->hashName(),
             ]);
-    
+
             $newImage->save();
         }
-
 
         return redirect()->route('properties.index')
                         ->with('success', 'Property created successfully.');
@@ -162,19 +161,18 @@ class PropertyController extends Controller
         $property->update($request->except(['count']));
 
         $count = $request->input('count');
-        
-        for($i = 0; $i < $count; $i++){
-            $image = $request->file('images' . strval($i)); 
+
+        for ($i = 0; $i < $count; $i++) {
+            $image = $request->file('images'.strval($i));
             $image->store('images', 'public');
 
             $newImage = new Image([
-                "property_id" => $property->id,
-                "file_path" => $image->hashName()
+                'property_id' => $property->id,
+                'file_path' => $image->hashName(),
             ]);
-    
+
             $newImage->save();
         }
-
 
         return redirect()->route('properties.index')
                         ->with('success', 'Property updated successfully');
