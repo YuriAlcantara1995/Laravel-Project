@@ -19,7 +19,7 @@ class RealtorController extends Controller
      */
     public function index(Request $request)
     {
-        $sortBy = $request->query('sortBy','realtors.phone');
+        $sortBy = $request->query('sortBy','users.name');
         $order = $request->query('order','asc');  
         $realtors = Realtor::join('users','users.id','=','realtors.user_id')
         ->select('realtors.id','phone','user_id','users.name as user_name','users.email as user_email')

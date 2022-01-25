@@ -23,9 +23,34 @@
     <table class="table table-bordered">
         <tr>
             <th>No</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Contact</th>
+            @if($sortBy == "users.name" || $sortBy == null)
+                @if($order == "desc")
+                    <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'users.name', 'order' => 'asc']) }}">Name &darr;</a></th>
+                @else
+                    <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'users.name', 'order' => 'desc']) }}">Name &uarr;</a></th>
+                @endif
+            @else
+                <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'users.name', 'order' => 'asc']) }}">Name</a></th>
+            @endif
+
+            @if($sortBy == "users.email")
+                @if($order == "desc")
+                    <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'users.email', 'order' => 'asc']) }}">Email &darr;</a></th>
+                @else
+                    <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'users.email', 'order' => 'desc']) }}">Email &uarr;</a></th>
+                @endif
+            @else
+                <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'users.email', 'order' => 'asc']) }}">Email</a></th>
+            @endif
+            @if($sortBy == "phone")
+                @if($order == "desc")
+                    <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'phone', 'order' => 'asc']) }}">Conctact &darr;</a></th>
+                @else
+                    <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'phone', 'order' => 'desc']) }}">Contact &uarr;</a></th>
+                @endif
+            @else
+                <th><a style="color:black" class="" href="{{ Request::fullUrlWithQuery(['sortBy' => 'phone', 'order' => 'asc']) }}">Contact</a></th>
+            @endif            
             <th width="280px">Action</th>
         </tr>
         @foreach ($realtors as $realtor)
