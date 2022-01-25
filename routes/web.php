@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Spatie\Health\Http\Controllers\HealthCheckResultsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,7 @@ Route::resource('properties', App\Http\Controllers\PropertyController::class);
 
 Route::resource('realtors', App\Http\Controllers\RealtorController::class);
 
+Route::get('health', HealthCheckResultsController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
