@@ -58,6 +58,11 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
+        if(!auth()->check())
+        {
+            return redirect()->route('login');
+        }
+        
         $request->validate([
             'description' => 'required',
             'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
@@ -103,6 +108,11 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
+        if(!auth()->check())
+        {
+            return redirect()->route('login');
+        }
+
         if (!Gate::allows('update-property', $property)) {
             abort(403);
         }
@@ -122,6 +132,11 @@ class PropertyController extends Controller
 
     public function update(Request $request, Property $property)
     {
+        if(!auth()->check())
+        {
+            return redirect()->route('login');
+        }
+
         if (!Gate::allows('update-property', $property)) {
             abort(403);
         }
@@ -145,6 +160,11 @@ class PropertyController extends Controller
      */
     public function destroy(Property $property)
     {
+        if(!auth()->check())
+        {
+            return redirect()->route('login');
+        }
+
         if (!Gate::allows('delete-property', $property)) {
             abort(403);
         }

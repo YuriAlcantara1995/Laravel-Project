@@ -53,6 +53,11 @@ class RealtorController extends Controller
      */
     public function store(Request $request)
     {
+        if(!auth()->check())
+        {
+            return redirect()->route('login');
+        }
+
         $request->validate([
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
         ]);
@@ -87,6 +92,11 @@ class RealtorController extends Controller
      */
     public function edit(Realtor $realtor)
     {
+        if(!auth()->check())
+        {
+            return redirect()->route('login');
+        }
+
         if (!Gate::allows('update-realtor', $realtor)) {
             abort(403);
         }
@@ -104,6 +114,11 @@ class RealtorController extends Controller
 
     public function update(Request $request, Realtor $realtor)
     {
+        if(!auth()->check())
+        {
+            return redirect()->route('login');
+        }
+
         if (!Gate::allows('update-realtor', $realtor)) {
             abort(403);
         }
@@ -126,6 +141,11 @@ class RealtorController extends Controller
      */
     public function destroy(Realtor $realtor)
     {
+        if(!auth()->check())
+        {
+            return redirect()->route('login');
+        }
+
         if (!Gate::allows('delete-realtor', $realtor)) {
             abort(403);
         }
