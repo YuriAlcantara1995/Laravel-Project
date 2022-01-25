@@ -64,33 +64,20 @@ class AppServiceProvider extends ServiceProvider
             UsedDiskSpaceCheck::new()
                 ->warnWhenUsedSpaceIsAbovePercentage(70)
                 ->failWhenUsedSpaceIsAbovePercentage(90),
-        ]);
 
-        Health::checks([
-            CacheCheck::new(),
-        ]);
+                CacheCheck::new(),
 
-        Health::checks([
-            CpuLoadCheck::new()
+                CpuLoadCheck::new()
                 ->failWhenLoadIsHigherInTheLast5Minutes(2.0)
                 ->failWhenLoadIsHigherInTheLast15Minutes(1.5),
-        ]);
 
-        Health::checks([
-            DatabaseCheck::new(),
-        ]);
+                DatabaseCheck::new(),
 
-        Health::checks([
-            EnvironmentCheck::new(),
-        ]);
+                EnvironmentCheck::new(),
 
-        Health::checks([
-            DebugModeCheck::new(),
-        ]);
+                DebugModeCheck::new(),
 
-        Health::checks([
-            PingCheck::new()->url('http://yuri.harbourspace.site/'),
-        ]);
-
+                PingCheck::new()->url('http://yuri.harbourspace.site/'),
+            ]);
     }
 }
