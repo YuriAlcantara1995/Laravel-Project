@@ -103,6 +103,10 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
+        if (!Gate::allows('update-property', $property)) {
+            abort(403);
+        }
+
         return view('properties.edit',compact('property'));
     }
     
@@ -116,6 +120,10 @@ class PropertyController extends Controller
 
     public function update(Request $request, Property $property)
     {
+        if (!Gate::allows('update-property', $property)) {
+            abort(403);
+        }
+
         $request->validate([
             'description' => 'required',
             'price' => 'required'
@@ -135,6 +143,10 @@ class PropertyController extends Controller
      */
     public function destroy(Property $property)
     {
+        if (!Gate::allows('delete-property', $property)) {
+            abort(403);
+        }
+
         $property->delete();
     
         return redirect()->route('properties.index')
