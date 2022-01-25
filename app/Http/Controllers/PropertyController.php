@@ -107,7 +107,9 @@ class PropertyController extends Controller
             abort(403);
         }
 
-        return view('properties.edit',compact('property'));
+        $categories = Category::all();
+
+        return view('properties.edit',compact('property', 'categories'));
     }
     
     /**

@@ -27,23 +27,40 @@
         @csrf
         @method('PUT')
    
-         <div class="row">
+        <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Description:</strong>
-                    <input type="text" name="description" value="{{ $property->description }}" class="form-control" placeholder="Description">
+                    <strong>Name:</strong>
+                    <input type="text" name="name" class="form-control" value="{{ $property->name }}">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Category:</strong>
+                    <select name="category_id" class="form-control">
+                        @foreach ($categories as $category)
+                          <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Price:</strong>
-                    <input type="number" name="price" value="{{ $property->price }}" class="form-control" placeholder="Price">
+                    <input type="number" name="price" class="form-control" value="{{ $property->price }}">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Description:</strong>
+                    <input type="text" name="description" class="form-control" value="{{ $property->description }}">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
+
    
     </form>
 @endsection
