@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Realtor;
+use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
@@ -11,13 +11,13 @@ class WelcomeController extends Controller
     {
         $realtors = Realtor::all();
 
-        return view('welcome',compact('realtors'));
+        return view('welcome', compact('realtors'));
     }
 
     public function index(Request $request)
     {
         $realtors = Realtor::all();
 
-        return view('welcome',compact('realtors'));
+        return view('welcome', compact('realtors'));
     }
 }

@@ -14,7 +14,7 @@ class RealtorFactory extends Factory
     public function definition()
     {
         return [
-            'phone' => $this->faker->phoneNumber()
+            'phone' => $this->faker->phoneNumber(),
         ];
     }
 }

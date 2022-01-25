@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RealtorSeeder::class,
             CategorySeeder::class,
-            PropertySeeder::class
+            PropertySeeder::class,
         ]);
     }
 }

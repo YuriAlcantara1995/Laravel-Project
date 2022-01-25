@@ -2,20 +2,20 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Gate;
-use App\Models\User;
 use App\Models\Property;
 use App\Models\Realtor;
-use Spatie\Health\Facades\Health;
-use Spatie\Health\Checks\Checks\UsedDiskSpaceCheck;
-use Spatie\Health\Checks\Checks\CacheCheck;
+use App\Models\User;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\ServiceProvider;
 use Spatie\CpuLoadHealthCheck\CpuLoadCheck;
+use Spatie\Health\Checks\Checks\CacheCheck;
 use Spatie\Health\Checks\Checks\DatabaseCheck;
-use Spatie\Health\Checks\Checks\EnvironmentCheck;
 use Spatie\Health\Checks\Checks\DebugModeCheck;
+use Spatie\Health\Checks\Checks\EnvironmentCheck;
 use Spatie\Health\Checks\Checks\PingCheck;
+use Spatie\Health\Checks\Checks\UsedDiskSpaceCheck;
+use Spatie\Health\Facades\Health;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -40,23 +40,19 @@ class AppServiceProvider extends ServiceProvider
 
         $this->register();
 
-        Gate::define('update-realtor', function (User $user, Realtor $realtor) 
-        {
+        Gate::define('update-realtor', function (User $user, Realtor $realtor) {
             return $user->id === $realtor->user_id;
         });
 
-        Gate::define('delete-realtor', function (User $user, Realtor $realtor) 
-        {
+        Gate::define('delete-realtor', function (User $user, Realtor $realtor) {
             return $user->id === $realtor->user_id;
         });
 
-        Gate::define('update-property', function (User $user, Property $property) 
-        {
+        Gate::define('update-property', function (User $user, Property $property) {
             return $user->id === $property->realtor->user_id;
         });
 
-        Gate::define('delete-property', function (User $user, Property $property) 
-        {
+        Gate::define('delete-property', function (User $user, Property $property) {
             return $user->id === $property->realtor->user_id;
         });
 
@@ -65,19 +61,19 @@ class AppServiceProvider extends ServiceProvider
                 ->warnWhenUsedSpaceIsAbovePercentage(70)
                 ->failWhenUsedSpaceIsAbovePercentage(90),
 
-                CacheCheck::new(),
+            CacheCheck::new(),
 
-                CpuLoadCheck::new()
-                ->failWhenLoadIsHigherInTheLast5Minutes(2.0)
-                ->failWhenLoadIsHigherInTheLast15Minutes(1.5),
+            CpuLoadCheck::new()
+            ->failWhenLoadIsHigherInTheLast5Minutes(2.0)
+            ->failWhenLoadIsHigherInTheLast15Minutes(1.5),
 
-                DatabaseCheck::new(),
+            DatabaseCheck::new(),
 
-                EnvironmentCheck::new(),
+            EnvironmentCheck::new(),
 
-                DebugModeCheck::new(),
+            DebugModeCheck::new(),
 
-                PingCheck::new()->url('http://yuri.harbourspace.site/'),
-            ]);
+            PingCheck::new()->url('http://yuri.harbourspace.site/'),
+        ]);
     }
 }

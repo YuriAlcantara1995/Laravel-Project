@@ -12,7 +12,7 @@ class Realtor extends Model
     protected $fillable = [
         'phone',
     ];
-    
+
     public function properties()
     {
         return $this->hasMany('App\Models\Property');
