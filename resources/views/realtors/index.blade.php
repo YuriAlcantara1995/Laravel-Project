@@ -6,6 +6,9 @@
             <div class="pull-left">
                 <h2>Real Estate Selling System</h2>
             </div>
+            <div class="pull-right" style="margin-left:10px">
+                    <a class="btn btn-success" href="{{ 'welcome' }}"> Home</a>
+            </div>
             @if (!$existRealtorProfile && auth()->check())
                <div class="pull-right">
                     <a class="btn btn-success" href="{{ route('realtors.create') }}"> Create Realtor Profile</a>

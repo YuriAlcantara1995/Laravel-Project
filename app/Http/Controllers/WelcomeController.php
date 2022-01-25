@@ -13,4 +13,11 @@ class WelcomeController extends Controller
 
         return view('welcome',compact('realtors'));
     }
+
+    public function index(Request $request)
+    {
+        $realtors = Realtor::all();
+
+        return view('welcome',compact('realtors'));
+    }
 }

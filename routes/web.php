@@ -18,6 +18,8 @@ Route::get('/', App\Http\Controllers\WelcomeController::class);
 
 Route::get('/welcome', App\Http\Controllers\WelcomeController::class);
 
+Route::resource('welcome', App\Http\Controllers\WelcomeController::class);
+
 Route::resource('properties', App\Http\Controllers\PropertyController::class);
 
 Route::resource('realtors', App\Http\Controllers\RealtorController::class);

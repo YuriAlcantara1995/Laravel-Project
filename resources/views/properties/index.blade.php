@@ -6,9 +6,14 @@
             <div class="pull-left">
                 <h2>Real Estate Selling System</h2>
             </div>
+            <div class="pull-right" style="margin-left:10px">
+                    <a class="btn btn-success" href="{{ 'welcome' }}"> Home</a>
+            </div>
+
             <div class="pull-right">
                 <a class="btn btn-success" href="{{ route('properties.create') }}"> Create New Property</a>
             </div>
+
         </div>
     </div>
    
