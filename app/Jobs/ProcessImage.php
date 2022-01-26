@@ -36,10 +36,6 @@ class ProcessImage implements ShouldQueue
 
         $thumbnail->save();
 
-        $image = Image::where('id',$this->image->id)->get();
-        $image->thumbnail_id = $thumbnail->id;
-        $image->save();
-
         var_dump($this->url);
         
         $imgFile = ImageLibrary::make($this->url);
@@ -49,6 +45,10 @@ class ProcessImage implements ShouldQueue
         });
 
         $imgFile->save(storage_path('app/public/images/' . 'Thumbnail' . $this->image->file_path));
+
+        $image = Image::where('id',$this->image->id)->get()->first();
+        $image->thumbnail_id = $thumbnail->id;
+        $image->save();
 
         var_dump("Done");
     }
