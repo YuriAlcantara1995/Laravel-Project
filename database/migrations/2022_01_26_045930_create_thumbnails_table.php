@@ -24,6 +24,18 @@ class CreateThumbnailsTable extends Migration
             $table->string('file_path');
             $table->timestamps();
         });
+
+        Schema::table('images', function (Blueprint $table) {
+            $table->unsignedBigInteger('thumbnail_id')->nullable();
+            $table->foreign('thumbnail_id')
+            ->references('id')
+            ->on('thumbnails')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+        });
+
+        
+
     }
 
     /**

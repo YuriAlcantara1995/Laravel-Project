@@ -49,7 +49,7 @@
                 <strong>Images:</strong>
                 <br/>
                 @foreach ($images as $image)
-                    <img src="/storage/images/{{$image->file_path}}" alt="">
+                    <img src="/storage/images/{{$image->thumbnail_file_path}}" alt="">
                     <br/>
                     <br/>
                 @endforeach

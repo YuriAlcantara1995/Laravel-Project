@@ -36,9 +36,15 @@ class ProcessImage implements ShouldQueue
 
         $thumbnail->save();
 
+        $image = Image::where('id',$this->image->id);
+        $image->thumbnail_id = $thumbnail->id;
+        $image->save();
+
+        var_dump($this->url);
+        
         $imgFile = ImageLibrary::make($this->url);
 
-        $imgFile->resize(100, 100, function ($constraint) {
+        $imgFile->resize(300, 300, function ($constraint) {
             $constraint->aspectRatio();
         });
 

@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Thumbnail;
+use App\Jobs\ProcessImage;
+use Intervention\Image\Facades\Image as ImageLibrary;
+
 
 class PropertyController extends Controller
 {
@@ -84,7 +88,7 @@ class PropertyController extends Controller
         $property->save();
 
         $count = $request->input('count');
-
+        var_dump($count);
         for ($i = 0; $i < $count; $i++) {
             $image = $request->file('images'.strval($i));
             $image->store('images', 'public');
@@ -95,6 +99,8 @@ class PropertyController extends Controller
             ]);
 
             $newImage->save();
+            var_dump($i);
+            ProcessImage::dispatch($newImage,url('/') . "/storage/images/" . $image->hashName()); 
         }
 
         return redirect()->route('properties.index')
@@ -109,7 +115,11 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {
-        $images = Image::where('property_id', '=', $property->id)->get();
+        $images = Image::join('thumbnails','images.id','=','thumbnails.image_id')
+        ->where('images.property_id', '=', $property->id)
+        ->select('images.id', 'images.property_id', 'images.file_path as image_file_path', 'thumbnails.file_path as thumbnail_file_path')
+        ->get();
+
 
         return view('properties.show', compact('property', 'images'));
     }
@@ -172,6 +182,8 @@ class PropertyController extends Controller
             ]);
 
             $newImage->save();
+
+            ProcessImage::dispatch($newImage,url('/') . "/storage/images/" . $image->hashName()); 
         }
 
         return redirect()->route('properties.index')

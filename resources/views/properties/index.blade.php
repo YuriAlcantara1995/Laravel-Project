@@ -36,7 +36,11 @@
                 <div class="row">
                 @forelse ($property->images as $image)
                 <div class="col-xs-12 col-sm-12 col-md-12">
-                   <img src="/storage/images/{{$image->file_path}}" alt="" width="300px">
+                    @if(!is_null($image->thumbnail))
+                       <img src="/storage/images/{{$image->thumbnail->file_path}}" alt="">
+                    @else
+                       <img src="/storage/images/{{$image->file_path}}" alt="">
+                    @endif
                 </div>
                 
                 @if ($loop->first)

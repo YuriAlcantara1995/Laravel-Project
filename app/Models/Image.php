@@ -15,4 +15,8 @@ class Image extends Model
     {
         return $this->belongsTo('App\Models\Property');
     }
+
+    public function thumbnail() {
+        return $this->hasOne('App\Models\Thumbnail');
+    }
 }
