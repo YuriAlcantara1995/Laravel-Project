@@ -77,7 +77,6 @@ class PropertyController extends Controller
             $validations['images'.strval($i)] = 'required|image|mimes:jpeg,png,jpg|max:2048';
         }
 
-
         $request->validate($validations);
 
         $user_id = Auth::id();
@@ -93,7 +92,6 @@ class PropertyController extends Controller
         $property = Property::create($request->except(['count']));
         $property->realtor_id = $user_id;
         $property->save();
-
 
         for ($i = 0; $i < $count; $i++) {
             $image = $request->file('images'.strval($i));
