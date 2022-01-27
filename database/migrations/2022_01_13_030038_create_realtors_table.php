@@ -24,6 +24,15 @@ class CreateRealtorsTable extends Migration
             ->onUpdate('cascade');
             $table->timestamps();
         });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->unsignedBigInteger('realtor_id')->nullable();
+            $table->foreign('realtor_id')
+            ->references('id')
+            ->on('realtors')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+        });
     }
 
     /**
