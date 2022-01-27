@@ -7,9 +7,12 @@ A simple website that helps to manage small to medium scale real estate business
 
 ## About the Project
 ### Models
-* User: 
-* Property: 
-* Realtor: 
+* User 
+* Property 
+* Realtor
+* Category
+* Image
+* Thumbnail 
 ## Getting Started
 
 ### Dependencies
