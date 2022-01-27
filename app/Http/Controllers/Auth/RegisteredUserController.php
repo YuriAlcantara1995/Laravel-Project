@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Notifications\WelcomeEmail;
 
 class RegisteredUserController extends Controller
 {
@@ -46,6 +47,16 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
+
+        $details = [
+            'greeting' => 'Hello '.$user->name,
+            'body' => 'Real Estate Selling System is mainly a listing website to build connection between buyers and sellers.',
+            'thanks' => 'Thank you for using our website!',
+            'actionText' => 'View Properties',
+            'actionURL' => url('/properties'),
+        ];
+
+        $user->notify(new WelcomeEmail($details));
 
         Auth::login($user);
 
