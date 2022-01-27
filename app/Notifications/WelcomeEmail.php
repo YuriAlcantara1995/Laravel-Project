@@ -10,14 +10,13 @@ use Illuminate\Notifications\Notification;
 class WelcomeEmail extends Notification
 {
     use Queueable;
-  
+
     private $details;
-   
+
     public function __construct($details)
     {
         $this->details = $details;
     }
-
 
     /**
      * Get the notification's delivery channels.
