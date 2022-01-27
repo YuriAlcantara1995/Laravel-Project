@@ -8,7 +8,7 @@
             <h2>Add Realtor Profile</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ url()->previous() }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('realtors.index')  }}"> Realtors</a>
         </div>
     </div>
 </div>

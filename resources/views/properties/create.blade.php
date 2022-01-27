@@ -28,7 +28,7 @@
             <h2>Add New Property</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ url()->previous() }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('properties.index') }}"> Properties</a>
         </div>
     </div>
 </div>
