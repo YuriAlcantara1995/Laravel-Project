@@ -65,12 +65,20 @@ class PropertyController extends Controller
             return redirect()->route('login');
         }
 
-        $request->validate([
+        $count = $request->input('count');
+        $validations = [
             'description' => 'required',
             'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'name' => 'required',
             'category_id' => 'required',
-        ]);
+        ];
+
+        for ($i = 0; $i < $count; $i++) {
+            $validations['images'.strval($i)] = 'required|image|mimes:jpeg,png,jpg|max:2048';
+        }
+
+
+        $request->validate($validations);
 
         $user_id = Auth::id();
 
@@ -86,8 +94,7 @@ class PropertyController extends Controller
         $property->realtor_id = $user_id;
         $property->save();
 
-        $count = $request->input('count');
-        var_dump($count);
+
         for ($i = 0; $i < $count; $i++) {
             $image = $request->file('images'.strval($i));
             $image->store('images', 'public');
@@ -160,15 +167,21 @@ class PropertyController extends Controller
             abort(403);
         }
 
-        $request->validate([
+        $count = $request->input('count');
+        $validations = [
             'description' => 'required',
-            'price' => 'required',
+            'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'name' => 'required',
             'category_id' => 'required',
-        ]);
+        ];
+
+        for ($i = 0; $i < $count; $i++) {
+            $validations['images'.strval($i)] = 'required|image|mimes:jpeg,png,jpg|max:2048';
+        }
+
+        $request->validate($validations);
 
         $property->update($request->except(['count']));
-
-        $count = $request->input('count');
 
         for ($i = 0; $i < $count; $i++) {
             $image = $request->file('images'.strval($i));
