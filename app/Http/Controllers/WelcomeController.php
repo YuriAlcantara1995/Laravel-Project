@@ -11,7 +11,7 @@ class WelcomeController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $realtors = Cache::remember('welcome_realtors', 120 , function () {
+        $realtors = Cache::remember('welcome_realtors', 120, function () {
             return DB::table('realtors')->get();
         });
 
@@ -20,7 +20,7 @@ class WelcomeController extends Controller
 
     public function index(Request $request)
     {
-        $realtors = Cache::remember('welcome_realtors', 120 , function () {
+        $realtors = Cache::remember('welcome_realtors', 120, function () {
             return DB::table('realtors')->get();
         });
 
