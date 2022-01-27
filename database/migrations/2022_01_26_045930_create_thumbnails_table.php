@@ -33,9 +33,6 @@ class CreateThumbnailsTable extends Migration
             ->onDelete('cascade')
             ->onUpdate('cascade');
         });
-
-        
-
     }
 
     /**

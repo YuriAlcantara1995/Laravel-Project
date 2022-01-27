@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Image;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Image;
 
 class Thumbnail extends Model
 {
@@ -12,11 +12,11 @@ class Thumbnail extends Model
 
     protected $fillable = [
         'image_id',
-        'file_path'
+        'file_path',
     ];
 
-    public function image() {
+    public function image()
+    {
         return $this->hasOne('App\Models\Image');
     }
-
 }
