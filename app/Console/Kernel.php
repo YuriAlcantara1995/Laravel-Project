@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command(\Spatie\Health\Commands\RunHealthChecksCommand::class)->everyMinute();
+        $schedule->command('make:backup')->daily()->at('04:00');
     }
 
     /**
