@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
 
 class RealtorController extends Controller
 {
@@ -26,6 +27,8 @@ class RealtorController extends Controller
         ->orderBy($sortBy, $order)->paginate(5);
 
         $existRealtorProfile = (Auth::check()) && (Realtor::all()->where('user_id', Auth::user()->id)->count() != 0);
+
+        cache()->forget('welcome_realtors');
 
         return view('realtors.index', compact('realtors', 'sortBy', 'order', 'existRealtorProfile'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
